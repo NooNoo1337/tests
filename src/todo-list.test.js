@@ -1,5 +1,5 @@
 
-const { it } = require("@jest/globals");
+const { it, expect } = require("@jest/globals");
 const { TodoList, TodoItem } = require("./todo-list");
 
 it("should add first element to list", () => {
@@ -7,9 +7,8 @@ it("should add first element to list", () => {
 
   list.addItem({ name: "create test" });
 
-  if (list.items.length === 0) {
-    throw Error("Items equal to 0");
-  }
+  expect(list.items).toHaveLength(1);
+  expect(list.items[0].name).toBe("create test");
 });
 
 it('should add second item to list', () => {
@@ -18,7 +17,6 @@ it('should add second item to list', () => {
 
   list.addItem({ name: "check me" });
 
-  if (list.items[1].name !== "check me") {
-    throw Error("Second item was not added");
-  }
+  expect(list.items).toHaveLength(2);
+  expect(list.items[1].name).toBe("check me");
 });
