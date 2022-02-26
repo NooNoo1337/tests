@@ -1,20 +1,18 @@
 
+const { it } = require("@jest/globals");
 const { TodoList, TodoItem } = require("./todo-list");
 
-const testAddFirstItem = () => {
-  // Подготовка
+it("should add first element to list", () => {
   const list = new TodoList();
 
-  // Действие
-  list.addItem({name: 'create test'});
+  list.addItem({ name: "create test" });
 
-  // Проверка
-  if(list.items.length === 0) {
-    throw Error('Items equal to 0')
+  if (list.items.length === 0) {
+    throw Error("Items equal to 0");
   }
-}
+});
 
-const testSecondAddFirstItem = () => {
+it('should add second item to list', () => {
   const item = new TodoItem({ name: "create test" });
   const list = new TodoList([item]);
 
@@ -23,7 +21,4 @@ const testSecondAddFirstItem = () => {
   if (list.items[1].name !== "check me") {
     throw Error("Second item was not added");
   }
-};
-
-testAddFirstItem();
-testSecondAddFirstItem();
+});
